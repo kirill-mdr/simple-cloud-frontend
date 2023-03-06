@@ -15,7 +15,7 @@ export const useFilesStore = defineStore('files', {
   actions: {
     async setFiles(){
       const authStore = useAuthStore()
-      this.homeFolder = await RequestService.getFolder(authStore.userInfo.home_folder_id).then(res => res.data)
+      this.homeFolder = await RequestService.getFolder(this.currentFolderId || authStore.userInfo.home_folder_id).then(res => res.data)
       this.currentFolder = this.homeFolder
       this.currentFolderId = this.homeFolder.id
     }

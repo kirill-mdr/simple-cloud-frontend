@@ -73,13 +73,22 @@ class RequestService {
   }
 
 
-  async deleteFolder(id) {
-    await axios.delete(`/api/folders/${id}`)
+  async deleteFolder(folderId) {
+    await axios.delete(`/api/folders/${folderId}`)
   }
 
-  async deleteFile(id) {
-    await axios.delete(`/api/files/${id}`)
+  async deleteFile(fileId) {
+    await axios.delete(`/api/files/${fileId}`)
   }
+
+  async getSharedLink(fileId) {
+    await axios.post(`/api/shared-files/${fileId}`)
+  }
+
+  async deleteSharedLink(fileId) {
+    await axios.delete(`/api/shared-files/${fileId}`)
+  }
+
 }
 
 export default new RequestService()
