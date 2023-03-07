@@ -20,7 +20,7 @@ import {useAuthStore} from "@/store/authStore";
 
 const authStore = useAuthStore()
 const logout = async () => {
-  router.push('/login')
+  router.push('/')
   await RequestService.logout().then(authStore.setAuth(false))
   localStorage.removeItem('isAuth')
   localStorage.removeItem('userInfo')

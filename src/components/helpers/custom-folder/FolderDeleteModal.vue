@@ -5,9 +5,9 @@
     width="auto"
   >
     <v-card class="px-6 py-8" min-width="360px">
-      <h1>Точно хотите удалить папку?</h1>
+      <h2>When deleting nested elements will be deleted</h2>
       <v-btn color="error" @click="deleteFolder">
-        Да, удалить
+        Yes, confirm
       </v-btn>
     </v-card>
   </v-dialog>
