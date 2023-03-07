@@ -58,6 +58,7 @@ export default {
         filesStore.setFiles()
       }).then(() => {
         this.dialog = false
+        this.file = null
       })
         .catch((error) => alert(error.response.data.message))
         .then(() => this.loading = false)
