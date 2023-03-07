@@ -4,12 +4,12 @@ import LoginView from "@/views/login/LoginView.vue";
 import RegistrationView from "@/views/registration/RegistrationView.vue";
 import HomeView from "@/views/home/HomeView.vue";
 import {useAuthStore} from "@/store/authStore";
-
+import CurrentFolderView from "@/views/folder/CurrentFolderView.vue";
 
 
 const routes = [
   {
-    path: '/',
+    path: '/login',
     component: LoginView,
     name: 'login'
   },
@@ -19,8 +19,15 @@ const routes = [
     name: 'registration'
   },
   {
-    path: '/home',
-    component: HomeView
+    path: '/',
+    component: HomeView,
+    redirect: '/home',
+    name: 'main',
+    children: [{
+      path: '/home',
+      name: 'home',
+      component: CurrentFolderView
+    }]
   }
 ]
 
@@ -30,8 +37,12 @@ const router = createRouter({
 })
 router.beforeEach(async (to, from) => {
   const authStore = useAuthStore()
-  if (!authStore.isAuth && to.name !== 'login' && to.name !== 'registration')
-  {
-    return { name: 'login' }
-  }})
+  if (!authStore.isAuth && to.name !== 'login' && to.name !== 'registration') {
+    return {name: 'login'}
+  }
+  if (authStore.isAuth && to.name === 'main') {
+    return {name: 'home'}
+  }
+})
+
 export default router
